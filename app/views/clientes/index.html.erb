@@ -1,0 +1,181 @@
+<body>
+<div id="wrap">
+  <div id="masthead">
+    <h1>Sistema Financeiro de Supermecado - Mercado São Caetano</h1>
+    <h2><%= link_to 'Perfil', funcionarios_perfil_path %> | <%= link_to 'Contato', padrao_contato_path %> | <%= link_to 'Sair', logins_sair_path %> </h2>
+  </div>
+  <div id="menucontainer">
+    <div id="menu">
+      <ul>
+        <li><%= link_to 'Registro', new_contum_path %></li>
+        <li><%= link_to 'Pagamento', pagamentos_path %></li>
+        <li><%= link_to 'Contas', contums_path %></li>
+        <li><%= link_to 'Cliente', clientes_path, class:"current"%></li>
+        <%if Pessoa.getPessoaLogada.cargo == "gerente" %>
+          <li><%= link_to 'Funcionário', funcionarios_path %></li>
+        <%end%>
+      </ul>
+    </div>
+  </div>
+  <div id="container">
+
+    <div id="content">
+
+      <% # formulario de cadastramento ..................................... %>
+      <%= form_with model: @cliente, scope: :cliente, class:"formulario", local: true do |form| %>
+
+        <span class="titulo_formulario">
+					Cadastrar Cliente
+				</span>
+
+
+
+        <div class="elemento_formulario quantidade_elemento_linha_formulario">
+          <%= form.label :nome, class:"label-elemento_formulario" %><br>
+          <%= form.text_field :nome, class:"input100", placeholder:"Digite um nome" %>
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="elemento_formulario quantidade_elemento_linha_formulario">
+          <%= form.label :cpf, class:"label-elemento_formulario" %><br>
+          <%= form.text_field :cpf, class:"input100", placeholder:"Digite um cpf" %>
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="elemento_formulario quantidade_elemento_linha_formulario">
+          <%= form.label :telefone, class:"label-elemento_formulario" %><br>
+          <%= form.text_field :telefone, class:"input100", placeholder:"Digite um número de telefone" %>
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="elemento_formulario quantidade_elemento_linha_formulario">
+          <%= form.label :celular, class:"label-elemento_formulario" %><br>
+          <%= form.text_field :celular, class:"input100", placeholder:"Digite um número de celular" %>
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="elemento_formulario quantidade_elemento_linha_formulario">
+          <%= form.label :email, class:"label-elemento_formulario" %><br>
+          <%= form.text_field :email, class:"input100", placeholder:"Digite um e-mail (mínimo de 5 carecteres)" %>
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="elemento_formulario quantidade_elemento_linha_formulario">
+          <%= form.label :senha, class:"label-elemento_formulario" %><br>
+          <%= form.text_field :senha, type:"password", class:"input100", placeholder:"Digite uma senha (mínimo de 5 carecteres)" %>
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="elemento_formulario quantidade_elemento_linha_formulario">
+          <%= form.label :cidade, class:"label-elemento_formulario" %><br>
+          <%= form.text_field :cidade, class:"input100", placeholder:"Digite o nome de uma cidade/Estado" %>
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="elemento_formulario quantidade_elemento_linha_formulario">
+          <%= form.label :rua, class:"label-elemento_formulario" %><br>
+          <%= form.text_field :rua, class:"input100", placeholder:"Digite o nome de uma Rua" %>
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="elemento_formulario quantidade_elemento_linha_formulario">
+          <%= form.label :numero, class:"label-elemento_formulario" %><br>
+          <%= form.text_field :numero, class:"input100", placeholder:"Digite o número da casa" %>
+          <span class="focus-input100"></span>
+        </div>
+
+        <% if(ClientesController.getResultadoPositivoCliente != "")
+             valor = ""
+             resultado = ClientesController.getResultadoPositivoCliente
+          if resultado.split('-')[0] == 'erro'
+            valor = "color: red"
+            resultado = resultado.split('-')[1]
+          end
+        %>
+          <span style="<%= valor %>" id="resultadoPositivo" class="status_processo">
+            <%= resultado %>
+          </span>
+          <%ClientesController.setResultadoPositivoCliente("") %>
+        <% end %>
+
+
+        <div class="div_butao_formulario">
+          <button class="botao_formulario">
+						<span>
+							Adicionar
+							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+						</span>
+          </button>
+        </div>
+
+        <% if @cliente.errors.any? %>
+          <div id="error_explanation">
+            <h2>
+              <%= pluralize(@cliente.errors.count, "erros") %>
+              antes de criar o cliente:
+            </h2>
+            <ul>
+              <% @cliente.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+      <% end %>
+
+      <% # formulario de pesquisa ......................................... %>
+      <%= form_tag(clientes_path, method: :get, remote:true, class:"formulario formulario_pesquisa") do %>
+
+        <div class="elemento_formulario quantidade_elemento_linha_formulario">
+          <%= text_field_tag :pesquisa, nil, class:"input100", placeholder:"Pesquise por nome, cpf e id" %>
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="div_butao_formulario" style="margin-top: -70px; margin-left: 380px">
+          <button class="botao_tabela" style="height: 50px">
+						<span>
+							Pesquisar
+							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+						</span>
+          </button>
+        </div>
+
+      <% end %>
+
+      <% # tabela de cadastramento..................................... %>
+      <div class="col-12" >
+        <div class="menuTabela col-10 offset-1 row" style="width: 1140px;">
+          <div class="left col-1 colunaTituloComum colunaId"> Id </div>
+          <div class="left col-5 colunaTituloComum colunaNome"> Nome </div>
+          <div class="left col-3 colunaTituloComum colunaCpf"> Cpf </div>
+          <div class="left col-3 colunaTituloComum colunaId"></div>
+          <div class="left col-3 colunaTituloComum colunaId"></div>
+        </div>
+
+        <div id="tabelaCliente" style="height: 500px; overflow-y:auto; overflow-x:hidden;">
+          <% @clientes.each do |cliente| %>
+            <% if cliente.cargo != "gerente" %>
+              <div class="menuTabela col-10 offset-1 row" style="width: 1140px; background: #ffffff;">
+                <div class="left col-1 colunaCorpoComum colunaId"> <%= cliente.id %> </div>
+                <div class="left col-5 colunaCorpoComum colunaNome"> <%= cliente.nome %> </div>
+                <div class="left col-3 colunaCorpoComum colunaCpf"> <%= cliente.cpf %> </div>
+                <div class="left col-3" style="width: 10%; font-size: 18px; margin-top: -20px;">
+                  <%= link_to 'Editar', edit_cliente_path(cliente), class:"botao_tabela",id:"d-#{'edit-'+cliente.cpf}" %>
+                </div>
+                <div class="left col-3" style="width: 10%; font-size: 18px; margin-top: -20px;">
+                  <%= link_to 'Deletar', cliente_path(cliente), class:"botao_tabela",
+                      method: :delete,
+                      data: { confirm: 'Tem certeza que deseja excluir esse Cliente?' },id:"d-#{'delete-'+cliente.cpf}" %>
+
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="footer"> Mercado São Caetano - Centro do povoado Quandu, municipio de Poço de Trincheiras </div>
+</div>
+</body>
