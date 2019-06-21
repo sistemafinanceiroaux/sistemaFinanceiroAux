@@ -41,7 +41,7 @@ function removeridsContasDevendo(ids, conta) {
     var result = "";
     for(var i = 0; i < resultado.length; i++){
         if(resultado[i].toString() !== "" && conta.toString() !== resultado[i].toString()){
-            result += "-" + resultado[i];
+            result += "-" + resultado[i].toString();
         }
     }
     return result;
@@ -84,11 +84,11 @@ function setValorContaAtrasada(valor) {
 }
 
 function removeridsContasAtrasada(ids, conta) {
-    var resultado = ids.value.split("-");
+    var resultad = ids.value.split("-");
     var result = "";
-    for(var i = 0; i < resultado.length; i++){
-        if(resultado[i].toString() !== "" && conta.toString() !== resultado[i].toString()){
-            result += "-" + resultado[i];
+    for(var i = 0; i < resultad.length; i++){
+        if(resultad[i].toString() !== "" && conta.toString() !== resultad[i].toString()){
+            result += "-" + resultad[i].toString();
         }
     }
     return result;
