@@ -1,4 +1,4 @@
-# Gerenciamento financeiro de supermercado
+﻿# Gerenciamento financeiro de supermercado
 
 ## Disciplina
 > Engenharia de software(2019.1)
@@ -10,7 +10,6 @@ O nosso projeto tem como principal objetivo oferecer funcionalidades que possam 
 > Luís Felipe Pereira da Silva
 
 > José Guilherme da Silva Arruda
-
 > Gabriel Gomes Ferreira
 
 ## Cliente
