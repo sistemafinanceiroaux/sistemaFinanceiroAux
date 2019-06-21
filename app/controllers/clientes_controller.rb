@@ -1,15 +1,6 @@
 class ClientesController < ApplicationController
   respond_to :js, :html
 
-  @@resultadoPositivoCliente = ""
-
-  def self.getResultadoPositivoCliente
-    @@resultadoPositivoCliente
-  end
-  def self.setResultadoPositivoCliente valor
-    @@resultadoPositivoCliente = valor
-  end
-
   def perfil
     if segurancaLogin(0)
       @cliente = Pessoa.getPessoaLogada()
@@ -46,11 +37,11 @@ class ClientesController < ApplicationController
 
 
     if @cliente.update(cliente_params)
-      @@resultadoPositivoCliente = "Cliente Atualizado"
-      redirect_to clientes_path
+      carregar_tabela('')
+      @resultadoCliente = "Cliente Atualizado"
     else
       carregar_tabela('')
-      render 'clientes/index'
+      @resultadoCliente = "erro-"
     end
 
   end
@@ -63,21 +54,12 @@ class ClientesController < ApplicationController
     @cliente.inativo = 0
 
     if @cliente.save
-      @@resultadoPositivoCliente = "Cliente Salvo"
+      #carregar_tabela ''
+      @resultadoCliente = "Cliente Salvo"
       redirect_to
     else
-      carregar_tabela('')
-      render 'clientes/index'
+      @resultadoCliente = "erro-"
     end
-=begin
-    if(@cliente.save)
-      @@resultadoPositivoCliente = "Cliente Salvo"
-    else
-      @@resultadoPositivoCliente = "Dados invalidos"
-    end
-
-    redirect_to
-=end
   end
 
   def destroy
@@ -85,12 +67,11 @@ class ClientesController < ApplicationController
     @cliente = Cliente.find(params[:id])
     if !verificar_contas_cliente @cliente.id
       @cliente.update(inativo: 1)
-      @@resultadoPositivoCliente = "Cliente Deletado";
+      carregar_tabela ''
+      @resultadoCliente = "Cliente Deletado";
     else
-      @@resultadoPositivoCliente = "erro-O cliente não foi deletado pois ele está devendo contas";
+      @resultadoCliente = "erro-O cliente não foi deletado pois ele está devendo contas";
     end
-
-    redirect_to clientes_path
   end
 
   private
@@ -98,12 +79,12 @@ class ClientesController < ApplicationController
   def segurancaLogin pessoa
     resultado = true
     if pessoa == 1
-      if Pessoa.getPessoaLogada() == nil || Pessoa.getPessoaLogada().tipo != 1
+      if Pessoa.getPessoaLogada().nil? || Pessoa.getPessoaLogada().tipo != 1
         resultado = false
         redirect_to logins_path
       end
     else
-      if Pessoa.getPessoaLogada() == nil || Pessoa.getPessoaLogada().tipo != 0
+      if Pessoa.getPessoaLogada().nil? || Pessoa.getPessoaLogada().tipo != 0
         resultado = false
         redirect_to logins_path
       end
