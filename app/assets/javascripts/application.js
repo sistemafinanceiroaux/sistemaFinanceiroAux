@@ -40,7 +40,8 @@ function removeridsContasDevendo(ids, conta) {
     var resultado = ids.value.split("-");
     var result = "";
     for(var i = 0; i < resultado.length; i++){
-        if(resultado[i] !== "" && conta.toString() !== resultado[i]){
+        var r = resultado[i];
+        if(resultado[i] !== "" && conta.toString() !== r){
             result += "-" + resultado[i];
         }
     }
@@ -86,7 +87,8 @@ function removeridsContasAtrasada(ids, conta) {
     var resultado = ids.value.split("-");
     var result = "";
     for(var i = 0; i < resultado.length; i++){
-        if(resultado[i] !== '' && conta.toString() !== resultado[i]){
+        var r = resultado[i];
+        if(resultado[i] !== "" && conta.toString() !== r){
             result += "-" + resultado[i];
         }
     }
@@ -146,10 +148,10 @@ function somarContasDevendoCliente(valor) {
     document.getElementById("contasDevendoCliente").innerHTML = "Contas Devendo = " + valorContaDevendo;
 }
 function selecionarContaDevendoCliente(clickedid, valor) {
-    if (document.getElementById(clickedid).checked == true) { // deixar ele true
+    if (document.getElementById(clickedid).checked) {
         valorContaDevendo += valor;
         document.getElementById("contasDevendoCliente").innerHTML = "Contas Devendo = " + valorContaDevendo;
-    } else {  // deixar ele falso
+    } else {
         valorContaDevendo -= valor;
         document.getElementById("contasDevendoCliente").innerHTML = "Contas Devendo = " + valorContaDevendo;
     }
