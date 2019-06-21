@@ -27,6 +27,8 @@ function selecionarCpfFuncionario(cpf){
 }
 
 let valorContaDevendo = 0;
+let valorContaAtrasada = 0;
+let valorContaPagas = 0;
 
 function setValorContaDevendo(valor) {
     valorContaDevendo = valor;
@@ -36,7 +38,7 @@ function setValorContaDevendo(valor) {
 
 function contasDevendoSelecionadas(conta, flag) {
     var ids = document.getElementById("idsContasDevendoSelecionadas");
-    if(flag == true){
+    if(flag){
         ids.value += "-" + conta;
     }
     else{
@@ -52,10 +54,10 @@ function contasDevendoSelecionadas(conta, flag) {
 }
 
 function somarContasDevendo(conta, valor) {
-    valorContaDevendo += valor
+    valorContaDevendo += valor;
     document.getElementById("contasDevendo").innerHTML = "Contas Devendo = " + valorContaDevendo;
     document.getElementById("valorContas").value = valorContaDevendo + valorContaAtrasada;
-    contasDevendoSelecionadas(conta, true)
+    contasDevendoSelecionadas(conta, true);
 }
 
 function selecionarContaDevendo(clickedid, valor) {
@@ -71,12 +73,27 @@ function selecionarContaDevendo(clickedid, valor) {
     document.getElementById("valorContas").value = valorContaDevendo + valorContaAtrasada;
 }
 
-let valorContaAtrasada = 0;
-
 function setValorContaAtrasada(valor) {
     valorContaAtrasada = valor;
     document.getElementById("contasAtrasada").innerHTML = "Contas Atrasadas = 0";
     document.getElementById("valorContas").value = "0";
+}
+
+function contasAtrasadaSelecionadas(conta, flag) {
+    var ids = document.getElementById("idsContasAtrasadaSelecionadas");
+    if(flag){
+        ids.value += "-" + conta;
+    }
+    else{
+        var resultado = ids.value.split('-');
+        var result = "";
+        for(var i = 0; i < resultado.length; i++){
+            if(resultado[i] != '' && conta.toString() != resultado[i]){
+                result += "-" + resultado[i];
+            }
+        }
+        ids.value = result;
+    }
 }
 
 function somarContasAtrasada(conta, valor) {
@@ -99,29 +116,10 @@ function selecionarContaAtrasada(clickedid, valor) {
     document.getElementById("valorContas").value = valorContaDevendo + valorContaAtrasada;
 }
 
-function contasAtrasadaSelecionadas(conta, flag) {
-    var ids = document.getElementById("idsContasAtrasadaSelecionadas");
-    if(flag == true){
-        ids.value += "-" + conta;
-    }
-    else{
-        var resultado = ids.value.split('-');
-        var result = "";
-        for(var i = 0; i < resultado.length; i++){
-            if(resultado[i] != '' && conta.toString() != resultado[i]){
-                result += "-" + resultado[i];
-            }
-        }
-        ids.value = result;
-    }
-}
-
 function selecionarCpfNomeCliente(nome, cpf) {
     document.getElementById("cpf").value = cpf;
     document.getElementById("nome").value = nome;
 }
-
-let valorContaPagas = 0;
 
 function somarContasPagasCliente(valor) {
     valorContaPagas += valor;
