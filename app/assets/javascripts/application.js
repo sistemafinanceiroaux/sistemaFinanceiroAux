@@ -64,15 +64,13 @@ function somarContasDevendo(conta, valor) {
 }
 
 function selecionarContaDevendo(clickedid, valor) {
-    if (document.getElementById(clickedid).checked) { // deixar ele true
+    if (document.getElementById(clickedid).checked) {
         valorContaDevendo += valor;
-        var a = document.getElementById("contasDevendo");
-        a.innerHTML = "Contas Devendo = " + valorContaDevendo.toString();
+        document.getElementById("contasDevendo").value = "Contas Devendo = " + valorContaDevendo.toString();
         contasDevendoSelecionadas(clickedid, true);
-    } else {  // deixar ele falso
+    } else {
         valorContaDevendo -= valor;
-        var resultado = "Contas Devendo = " + valorContaDevendo.toString();
-        document.getElementById("contasDevendo").innerHTML = resultado;
+        document.getElementById("contasDevendo").value = "Contas Devendo = " + valorContaDevendo.toString();
         contasDevendoSelecionadas(clickedid, false);
     }
     document.getElementById("valorContas").value = valorContaDevendo + valorContaAtrasada;
