@@ -66,7 +66,8 @@ function somarContasDevendo(conta, valor) {
 function selecionarContaDevendo(clickedid, valor) {
     if (document.getElementById(clickedid).checked) { // deixar ele true
         valorContaDevendo += valor;
-        document.getElementById("contasDevendo").innerHTML = "Contas Devendo = ";
+        let a = "Contas Devendo = " + valorContaDevendo.toString();
+        document.getElementById("contasDevendo").innerHTML = a.toString();
         contasDevendoSelecionadas(clickedid, true);
     } else {  // deixar ele falso
         valorContaDevendo -= valor;
