@@ -22,7 +22,7 @@ function selecionarCpfCliente(cpf){
 
 function selecionarCpfFuncionario(cpf){
 
-    var cpfCliente = document.getElementById('funcionario');
+    var cpfCliente = document.getElementById("funcionario");
     cpfCliente.value = cpf;
 }
 
@@ -30,60 +30,60 @@ let valorContaDevendo = 0;
 
 function setValorContaDevendo(valor) {
     valorContaDevendo = valor;
-    document.getElementById('contasDevendo').innerHTML = 'Contas Devendo = 0';
-    document.getElementById('valorContas').value = '0';
+    document.getElementById("contasDevendo").innerHTML = "Contas Devendo = 0";
+    document.getElementById("valorContas").value = "0";
 }
 
 function somarContasDevendo(conta, valor) {
     valorContaDevendo += valor
-    document.getElementById('contasDevendo').innerHTML = 'Contas Devendo = ' + valorContaDevendo;
-    document.getElementById('valorContas').value = valorContaDevendo + valorContaAtrasada;
+    document.getElementById("contasDevendo").innerHTML = "Contas Devendo = " + valorContaDevendo;
+    document.getElementById("valorContas").value = valorContaDevendo + valorContaAtrasada;
     contasDevendoSelecionadas(conta, true)
 }
 
 function selecionarContaDevendo(clickedid, valor) {
     if (document.getElementById(clickedid).checked == true) { // deixar ele true
         valorContaDevendo += valor;
-        document.getElementById('contasDevendo').innerHTML = 'Contas Devendo = ' + valorContaDevendo;
+        document.getElementById("contasDevendo").innerHTML = "Contas Devendo = " + valorContaDevendo;
         contasDevendoSelecionadas(clickedid, true);
     } else {  // deixar ele falso
         valorContaDevendo -= valor;
-        document.getElementById('contasDevendo').innerHTML = 'Contas Devendo = ' + valorContaDevendo;
+        document.getElementById("contasDevendo").innerHTML = "Contas Devendo = " + valorContaDevendo;
         contasDevendoSelecionadas(clickedid, false);
     }
-    document.getElementById('valorContas').value = valorContaDevendo + valorContaAtrasada;
+    document.getElementById("valorContas").value = valorContaDevendo + valorContaAtrasada;
 }
 
 let valorContaAtrasada = 0;
 
 function setValorContaAtrasada(valor) {
     valorContaAtrasada = valor;
-    document.getElementById('contasAtrasada').innerHTML = 'Contas Atrasadas = 0';
-    document.getElementById('valorContas').value = '0';
+    document.getElementById("contasAtrasada").innerHTML = "Contas Atrasadas = 0";
+    document.getElementById("valorContas").value = "0";
 }
 
 function somarContasAtrasada(conta, valor) {
     valorContaAtrasada += valor;
-    document.getElementById('contasAtrasada').innerHTML = 'Contas Atrasadas = ' + valorContaAtrasada;
-    document.getElementById('valorContas').value = valorContaDevendo + valorContaAtrasada;
+    document.getElementById("contasAtrasada").innerHTML = "Contas Atrasadas = " + valorContaAtrasada;
+    document.getElementById("valorContas").value = valorContaDevendo + valorContaAtrasada;
     contasAtrasadaSelecionadas(conta, true);
 }
 
 function selecionarContaAtrasada(clickedid, valor) {
     if (document.getElementById(clickedid).checked == true) { // deixar ele true
         valorContaAtrasada += valor;
-        document.getElementById('contasAtrasada').innerHTML = 'Contas Atrasadas = ' + valorContaAtrasada;
+        document.getElementById("contasAtrasada").innerHTML = "Contas Atrasadas = " + valorContaAtrasada;
         contasAtrasadaSelecionadas(clickedid, true);
     } else {  // deixar ele falso
         valorContaAtrasada -= valor;
-        document.getElementById('contasAtrasada').innerHTML = 'Contas Atrasadas = ' + valorContaAtrasada;
+        document.getElementById("contasAtrasada").innerHTML = "Contas Atrasadas = " + valorContaAtrasada;
         contasAtrasadaSelecionadas(clickedid, false);
     }
-    document.getElementById('valorContas').value = valorContaDevendo + valorContaAtrasada;
+    document.getElementById("valorContas").value = valorContaDevendo + valorContaAtrasada;
 }
 
 function contasDevendoSelecionadas(conta, flag) {
-    var ids = document.getElementById('idsContasDevendoSelecionadas');
+    var ids = document.getElementById("idsContasDevendoSelecionadas");
     if(flag == true){
         ids.value += "-" + conta;
     }
@@ -100,7 +100,7 @@ function contasDevendoSelecionadas(conta, flag) {
 }
 
 function contasAtrasadaSelecionadas(conta, flag) {
-    var ids = document.getElementById('idsContasAtrasadaSelecionadas');
+    var ids = document.getElementById("idsContasAtrasadaSelecionadas");
     if(flag == true){
         ids.value += "-" + conta;
     }
@@ -117,50 +117,50 @@ function contasAtrasadaSelecionadas(conta, flag) {
 }
 
 function selecionarCpfNomeCliente(nome, cpf) {
-    document.getElementById('cpf').value = cpf;
-    document.getElementById('nome').value = nome;
+    document.getElementById("cpf").value = cpf;
+    document.getElementById("nome").value = nome;
 }
 
 let valorContaPagas = 0;
 
 function somarContasPagasCliente(valor) {
     valorContaPagas += valor;
-    document.getElementById('contasPagas').innerHTML = 'Contas Pagas = ' + valorContaPagas;
+    document.getElementById("contasPagas").innerHTML = "Contas Pagas = " + valorContaPagas;
 }
 function selecionarContaPagasCliente(clickedid, valor) {
     if (document.getElementById(clickedid).checked == true) { // deixar ele true
         valorContaPagas += valor;
-        document.getElementById('contasPagas').innerHTML = 'Contas Pagas = ' + valorContaPagas;
+        document.getElementById("contasPagas").innerHTML = "Contas Pagas = " + valorContaPagas;
     } else {  // deixar ele falso
         valorContaPagas -= valor;
-        document.getElementById('contasPagas').innerHTML = 'Contas Pagas = ' + valorContaPagas;
+        document.getElementById("contasPagas").innerHTML = "Contas Pagas = " + valorContaPagas;
     }
 }
 
 function somarContasDevendoCliente(valor) {
     valorContaDevendo += valor;
-    document.getElementById('contasDevendoCliente').innerHTML = 'Contas Devendo = ' + valorContaDevendo;
+    document.getElementById("contasDevendoCliente").innerHTML = "Contas Devendo = " + valorContaDevendo;
 }
 function selecionarContaDevendoCliente(clickedid, valor) {
     if (document.getElementById(clickedid).checked == true) { // deixar ele true
         valorContaDevendo += valor;
-        document.getElementById('contasDevendoCliente').innerHTML = 'Contas Devendo = ' + valorContaDevendo;
+        document.getElementById("contasDevendoCliente").innerHTML = "Contas Devendo = " + valorContaDevendo;
     } else {  // deixar ele falso
         valorContaDevendo -= valor;
-        document.getElementById('contasDevendoCliente').innerHTML = 'Contas Devendo = ' + valorContaDevendo;
+        document.getElementById("contasDevendoCliente").innerHTML = "Contas Devendo = " + valorContaDevendo;
     }
 }
 
 function somarContasAtrasadasCliente(valor) {
     valorContaAtrasada += valor;
-    document.getElementById('contasAtrasada').innerHTML = 'Contas Atrasadas = ' + valorContaAtrasada;
+    document.getElementById("contasAtrasada").innerHTML = "Contas Atrasadas = " + valorContaAtrasada;
 }
 function selecionarContaAtrasadaCliente(clickedid, valor) {
     if (document.getElementById(clickedid).checked == true) { // deixar ele true
         valorContaAtrasada += valor;
-        document.getElementById('contasAtrasada').innerHTML = 'Contas Atrasadas = ' + valorContaAtrasada;
+        document.getElementById("contasAtrasada").innerHTML = "Contas Atrasadas = " + valorContaAtrasada;
     } else {  // deixar ele falso
         valorContaAtrasada -= valor;
-        document.getElementById('contasAtrasada').innerHTML = 'Contas Atrasadas = ' + valorContaAtrasada;
+        document.getElementById("contasAtrasada").innerHTML = "Contas Atrasadas = " + valorContaAtrasada;
     }
 }
