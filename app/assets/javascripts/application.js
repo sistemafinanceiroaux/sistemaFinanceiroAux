@@ -70,7 +70,8 @@ function selecionarContaDevendo(clickedid, valor) {
         contasDevendoSelecionadas(clickedid, true);
     } else {  // deixar ele falso
         valorContaDevendo -= valor;
-        document.getElementById("contasDevendo").innerHTML = "Contas Devendo = " + valorContaDevendo;
+        var resultado = "Contas Devendo = " + valorContaDevendo.toString();
+        document.getElementById("contasDevendo").innerHTML = resultado;
         contasDevendoSelecionadas(clickedid, false);
     }
     document.getElementById("valorContas").value = valorContaDevendo + valorContaAtrasada;
