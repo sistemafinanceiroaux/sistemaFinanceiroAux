@@ -8,9 +8,9 @@ O nosso projeto tem como principal objetivo oferecer funcionalidades que possam 
 
 ## Integrantes
 > Luís Felipe Pereira da Silva
-remark-stringify
+>
 > José Guilherme da Silva Arruda
-remark-stringify
+>
 > Gabriel Gomes Ferreira
 
 ## Cliente
