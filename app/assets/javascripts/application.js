@@ -16,7 +16,7 @@
 
 function selecionarCpfCliente(cpf){
 
-    var cpfCliente = document.getElementById('cliente');
+    var cpfCliente = document.getElementById("cliente");
     cpfCliente.value = cpf;
 }
 
@@ -26,7 +26,7 @@ function selecionarCpfFuncionario(cpf){
     cpfCliente.value = cpf;
 }
 
-valorContaDevendo = 0;
+let valorContaDevendo = 0;
 
 function setValorContaDevendo(valor) {
     valorContaDevendo = valor;
@@ -54,7 +54,7 @@ function selecionarContaDevendo(clickedid, valor) {
     document.getElementById('valorContas').value = valorContaDevendo + valorContaAtrasada;
 }
 
-valorContaAtrasada = 0;
+let valorContaAtrasada = 0;
 
 function setValorContaAtrasada(valor) {
     valorContaAtrasada = valor;
@@ -121,7 +121,7 @@ function selecionarCpfNomeCliente(nome, cpf) {
     document.getElementById('nome').value = nome;
 }
 
-valorContaPagas = 0;
+let valorContaPagas = 0;
 
 function somarContasPagasCliente(valor) {
     valorContaPagas += valor;
