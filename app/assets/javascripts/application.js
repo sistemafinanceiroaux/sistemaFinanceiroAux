@@ -34,6 +34,23 @@ function setValorContaDevendo(valor) {
     document.getElementById("valorContas").value = "0";
 }
 
+function contasDevendoSelecionadas(conta, flag) {
+    var ids = document.getElementById("idsContasDevendoSelecionadas");
+    if(flag == true){
+        ids.value += "-" + conta;
+    }
+    else{
+        var resultado = ids.value.split('-');
+        var result = "";
+        for(var i = 0; i < resultado.length; i++){
+            if(resultado[i] != '' && conta.toString() != resultado[i]){
+                result += "-" + resultado[i];
+            }
+        }
+        ids.value = result;
+    }
+}
+
 function somarContasDevendo(conta, valor) {
     valorContaDevendo += valor
     document.getElementById("contasDevendo").innerHTML = "Contas Devendo = " + valorContaDevendo;
@@ -80,23 +97,6 @@ function selecionarContaAtrasada(clickedid, valor) {
         contasAtrasadaSelecionadas(clickedid, false);
     }
     document.getElementById("valorContas").value = valorContaDevendo + valorContaAtrasada;
-}
-
-function contasDevendoSelecionadas(conta, flag) {
-    var ids = document.getElementById("idsContasDevendoSelecionadas");
-    if(flag == true){
-        ids.value += "-" + conta;
-    }
-    else{
-        var resultado = ids.value.split('-');
-        var result = "";
-        for(var i = 0; i < resultado.length; i++){
-            if(resultado[i] != '' && conta.toString() != resultado[i]){
-                result += "-" + resultado[i];
-            }
-        }
-        ids.value = result;
-    }
 }
 
 function contasAtrasadaSelecionadas(conta, flag) {
