@@ -36,7 +36,7 @@ function setValorContaDevendo(valor) {
     document.getElementById("valorContas").value = "0";
 }
 
-function removeridsContas(ids) {
+function removeridsContasDevendo(ids, conta) {
     var resultado = ids.value.split('-');
     var result = "";
     for(var i = 0; i < resultado.length; i++){
@@ -44,7 +44,7 @@ function removeridsContas(ids) {
             result += "-" + resultado[i];
         }
     }
-    return result
+    return result;
 }
 function contasDevendoSelecionadas(conta, flag) {
     var ids = document.getElementById("idsContasDevendoSelecionadas");
@@ -52,7 +52,7 @@ function contasDevendoSelecionadas(conta, flag) {
         ids.value += "-" + conta;
     }
     else{
-        ids.value = removeridsContas(ids.value);
+        ids.value = removeridsContasDevendo(ids.value, conta);
     }
 }
 
@@ -82,20 +82,23 @@ function setValorContaAtrasada(valor) {
     document.getElementById("valorContas").value = "0";
 }
 
+function removeridsContasAtrasada(ids, conta) {
+    var resultado = ids.value.split('-');
+    var result = "";
+    for(var i = 0; i < resultado.length; i++){
+        if(resultado[i] != '' && conta.toString() != resultado[i]){
+            result += "-" + resultado[i];
+        }
+    }
+    return result;
+}
 function contasAtrasadaSelecionadas(conta, flag) {
     var ids = document.getElementById("idsContasAtrasadaSelecionadas");
     if(flag){
         ids.value += "-" + conta;
     }
     else{
-        var resultado = ids.value.split('-');
-        var result = "";
-        for(var i = 0; i < resultado.length; i++){
-            if(resultado[i] != '' && conta.toString() != resultado[i]){
-                result += "-" + resultado[i];
-            }
-        }
-        ids.value = result;
+        ids.value = removeridsContasAtrasada(ids.value, conta);
     }
 }
 
