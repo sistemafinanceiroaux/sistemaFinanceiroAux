@@ -36,20 +36,23 @@ function setValorContaDevendo(valor) {
     document.getElementById("valorContas").value = "0";
 }
 
+function removeridsContas(ids) {
+    var resultado = ids.value.split('-');
+    var result = "";
+    for(var i = 0; i < resultado.length; i++){
+        if(resultado[i] != '' && conta.toString() != resultado[i]){
+            result += "-" + resultado[i];
+        }
+    }
+    return result
+}
 function contasDevendoSelecionadas(conta, flag) {
     var ids = document.getElementById("idsContasDevendoSelecionadas");
     if(flag){
         ids.value += "-" + conta;
     }
     else{
-        var resultado = ids.value.split('-');
-        var result = "";
-        for(var i = 0; i < resultado.length; i++){
-            if(resultado[i] != '' && conta.toString() != resultado[i]){
-                result += "-" + resultado[i];
-            }
-        }
-        ids.value = result;
+        ids.value = removeridsContas(ids.value);
     }
 }
 
