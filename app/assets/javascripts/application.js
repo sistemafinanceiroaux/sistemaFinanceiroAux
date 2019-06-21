@@ -40,8 +40,7 @@ function removeridsContasDevendo(ids, conta) {
     var resultado = ids.value.split("-");
     var result = "";
     for(var i = 0; i < resultado.length; i++){
-        var r = resultado[i];
-        if(resultado[i] !== "" && conta.toString() !== r){
+        if(resultado[i] !== "" && conta.toString() !== resultado[i].toString()){
             result += "-" + resultado[i];
         }
     }
@@ -65,7 +64,7 @@ function somarContasDevendo(conta, valor) {
 }
 
 function selecionarContaDevendo(clickedid, valor) {
-    if (document.getElementById(clickedid).checked == true) { // deixar ele true
+    if (document.getElementById(clickedid).checked) { // deixar ele true
         valorContaDevendo += valor;
         document.getElementById("contasDevendo").innerHTML = "Contas Devendo = " + valorContaDevendo;
         contasDevendoSelecionadas(clickedid, true);
@@ -87,8 +86,7 @@ function removeridsContasAtrasada(ids, conta) {
     var resultado = ids.value.split("-");
     var result = "";
     for(var i = 0; i < resultado.length; i++){
-        var r = resultado[i];
-        if(resultado[i] !== "" && conta.toString() !== r){
+        if(resultado[i] !== "" && conta.toString() !== resultado[i].toString()){
             result += "-" + resultado[i];
         }
     }
@@ -112,7 +110,7 @@ function somarContasAtrasada(conta, valor) {
 }
 
 function selecionarContaAtrasada(clickedid, valor) {
-    if (document.getElementById(clickedid).checked == true) { // deixar ele true
+    if (document.getElementById(clickedid).checked) { // deixar ele true
         valorContaAtrasada += valor;
         document.getElementById("contasAtrasada").innerHTML = "Contas Atrasadas = " + valorContaAtrasada;
         contasAtrasadaSelecionadas(clickedid, true);
@@ -134,7 +132,7 @@ function somarContasPagasCliente(valor) {
     document.getElementById("contasPagas").innerHTML = "Contas Pagas = " + valorContaPagas;
 }
 function selecionarContaPagasCliente(clickedid, valor) {
-    if (document.getElementById(clickedid).checked == true) { // deixar ele true
+    if (document.getElementById(clickedid).checked) { // deixar ele true
         valorContaPagas += valor;
         document.getElementById("contasPagas").innerHTML = "Contas Pagas = " + valorContaPagas;
     } else {  // deixar ele falso
