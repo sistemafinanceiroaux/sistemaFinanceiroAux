@@ -119,11 +119,11 @@ class ContumsController < ApplicationController
 
   def segurancaLogin pessoa
     if pessoa == 1
-      if Pessoa.getPessoaLogada() == nil || Pessoa.getPessoaLogada().tipo != 1
+      if Pessoa.getPessoaLogada().nil? || Pessoa.getPessoaLogada().tipo != 1
         redirect_to logins_path
       end
     else
-      if Pessoa.getPessoaLogada() == nil || Pessoa.getPessoaLogada().tipo != 0
+      if Pessoa.getPessoaLogada().nil? || Pessoa.getPessoaLogada().tipo != 0
         redirect_to logins_path
       end
     end
