@@ -6,7 +6,7 @@ class PadraoController < ApplicationController
 
   private
   def segurancaLogin
-    if Pessoa.getPessoaLogada() == nil
+    if Pessoa.getPessoaLogada().nil?
       redirect_to logins_path
     end
   end

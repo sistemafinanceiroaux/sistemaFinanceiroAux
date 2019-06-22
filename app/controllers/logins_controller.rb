@@ -55,7 +55,7 @@ class LoginsController < ApplicationController
 
   def verificarCampoVazioOuNulo string
     resultado = false
-    if string == nil || string == ''
+    if string.nil? || string == ''
       resultado = true
     end
     resultado

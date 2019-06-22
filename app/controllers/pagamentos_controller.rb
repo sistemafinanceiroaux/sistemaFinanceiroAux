@@ -27,7 +27,7 @@ class PagamentosController < ApplicationController
     valorContas = params[:valorContas]
     valorCliente = params[:valorCliente]
     cliente = nil
-    if (cliente = validarDadosPagamento cpf, valorContas, valorCliente) != nil
+    if !(cliente = validarDadosPagamento cpf, valorContas, valorCliente).nil?
       valorContas = valorContas.to_f
       valorCliente = valorCliente.to_f
       pagamentoCaso1 params[:idsContasDevendo], params[:idsContasAtrasada], valorCliente, valorContas
@@ -40,11 +40,11 @@ class PagamentosController < ApplicationController
 
   def segurancaLogin pessoa
     if pessoa == 1
-      if Pessoa.getPessoaLogada() == nil || Pessoa.getPessoaLogada().tipo != 1
+      if Pessoa.getPessoaLogada().nil? || Pessoa.getPessoaLogada().tipo != 1
         redirect_to logins_path
       end
     else
-      if Pessoa.getPessoaLogada() == nil || Pessoa.getPessoaLogada().tipo != 0
+      if Pessoa.getPessoaLogada().nil? || Pessoa.getPessoaLogada().tipo != 0
         redirect_to logins_path
       end
     end
