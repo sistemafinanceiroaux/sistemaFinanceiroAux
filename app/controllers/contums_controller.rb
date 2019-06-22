@@ -3,10 +3,6 @@ class ContumsController < ApplicationController
 
   def index
     segurancaLogin(1)
-    if @@telaAbertaConta == 1
-      @@resultadoPositivoFicheiro = ""
-    end
-    @@telaAbertaConta = 0;
 
     if(params[:pesquisa] &&  params[:pesquisa] != '')
       @clientes = Cliente.pesquisa(params[:pesquisa])
@@ -22,10 +18,6 @@ class ContumsController < ApplicationController
 
   def new
     segurancaLogin(1)
-    if @@telaAbertaConta == 0
-      @@resultadoPositivoFicheiro = ""
-    end
-    @@telaAbertaConta = 1
     if params[:pesquisaCliente] || params[:pesquisaFuncionario] || params[:pesquisaConta]
       carregarClientes params[:pesquisaCliente]
       carregarFuncionarios params[:pesquisaFuncionario]
@@ -97,6 +89,8 @@ class ContumsController < ApplicationController
       redirect_to new_contum_path
     else
       @contum = Contum.new
+      @contum.cliente = cpfCliente
+      @contum.funcionario = cpfFuncionario
       carregarFuncionarios ''
       carregarClientes ''
       carregarContasData ''
@@ -115,7 +109,6 @@ class ContumsController < ApplicationController
 
   private
   # 0 = index, 1 = new
-  @@telaAbertaConta = -1
 
   def segurancaLogin pessoa
     if pessoa == 1
