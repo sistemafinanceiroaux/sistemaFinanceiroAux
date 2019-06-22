@@ -7,7 +7,7 @@ class ClientesController < ApplicationController
       @contasPagas = []
       @contasDevendo = []
       @contasAtrasadas = []
-      if @cliente.id != nil
+      if !@cliente.id.nil?
         carregarContas(@cliente.id)
       end
     end

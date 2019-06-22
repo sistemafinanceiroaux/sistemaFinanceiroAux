@@ -1,15 +1,6 @@
 class ContumsController < ApplicationController
   respond_to :js, :html
 
-  @@resultadoPositivoFicheiro = ""
-
-  def self.getResultadoPositivoFicheiro
-    @@resultadoPositivoFicheiro
-  end
-  def self.setResultadoPositivoFicheiro valor
-    @@resultadoPositivoFicheiro  = valor
-  end
-
   def index
     segurancaLogin(1)
     if @@telaAbertaConta == 1
@@ -72,28 +63,12 @@ class ContumsController < ApplicationController
       end
     end
 
-    if !@conta.juros
-      @conta.juros = 0
-    end
-    if !@conta.valor
-      @conta.valor = 0
-    end
-
-    @cont = Contum.find(params[:id])
-    @cont.update(valor: @conta.valor, juros: @conta.juros, status: @conta.status, dataPagamento: @conta.dataPagamento,
+    @contum = Contum.find(params[:id])
+    if @contum.update(valor: @conta.valor, juros: @conta.juros, status: @conta.status, dataPagamento: @conta.dataPagamento,
                  descricao: @conta.descricao, comprador: @conta.comprador, parentesco: @conta.parentesco)
-    carregarContas @cont.cliente
-
-    @@resultadoPositivoFicheiro = "Conta Atualizada"
-    if @@telaAbertaConta == 0
-      carregarContas(@cont.cliente)
-      render 'contums/index'
-    elsif @@telaAbertaConta == 1
-      @contum = Contum.new
-      carregarFuncionarios ''
-      carregarClientes ''
-      carregarContasData ''
-      render 'contums/new'
+      redirect_to contum_path(@contum.cliente)
+    else
+      @resultadoConta = "erro-"
     end
   end
 
@@ -118,17 +93,13 @@ class ContumsController < ApplicationController
       @contum.dataPagamento = time;
     end
 
-
-
     if @contum.save
-      @@resultadoPositivoFicheiro = "Conta salva"
       redirect_to new_contum_path
     else
-      carregarClientes ''
+      @contum = Contum.new
       carregarFuncionarios ''
+      carregarClientes ''
       carregarContasData ''
-      @contum.funcionario = cpfFuncionario
-      @contum.cliente = cpfCliente
       render 'contums/new'
     end
 
@@ -138,17 +109,8 @@ class ContumsController < ApplicationController
     segurancaLogin(1)
     @contum = Contum.find(params[:id])
     @contum.destroy
-    @@resultadoPositivoFicheiro = "Conta Deletada"
-    if @@telaAbertaConta == 0
-      carregarContas(@contum.cliente)
-      render 'contums/index'
-    elsif @@telaAbertaConta == 1
-      @contum = Contum.new
-      carregarFuncionarios ''
-      carregarClientes ''
-      carregarContasData ''
-      render 'contums/new'
-    end
+    @resultadoConta = "Conta deletada"
+    redirect_to contum_path(@contum.cliente)
   end
 
   private

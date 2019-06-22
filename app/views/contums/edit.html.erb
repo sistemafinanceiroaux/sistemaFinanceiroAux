@@ -26,7 +26,7 @@
       </span>
 
       <% # formulario de cadastramento ..................................... %>
-      <%= form_with model: @contum, scope: :contum, local: true, class:"formulario" do |form| %>
+      <%= form_with model: @contum, scope: :contum, remote: true, class:"formulario" do |form| %>
 
         <div class="elemento_formulario quantidade_elemento_linha_formulario_ficheiro">
           <span class="label-elemento_formulario" name="cliente">Cpf do(a) Cliente <%= Cliente.pesquisaCpf(@contum.cliente)[0].nome %></span><br>
@@ -91,12 +91,7 @@
           <span class="focus-input100"></span>
         </div>
 
-        <% if(ContumsController.getResultadoPositivoFicheiro != "") %>
-    <span id="resultadoPositivo" class="status_processo">
-            <%= ContumsController.getResultadoPositivoFicheiro %>
-          </span>
-          <%ContumsController.setResultadoPositivoFicheiro("") %>
-        <% end %>
+        <div id="resultadoConta" class='status_processo'></div>
 
         <div class="div_butao_formulario">
           <button class="botao_formulario">

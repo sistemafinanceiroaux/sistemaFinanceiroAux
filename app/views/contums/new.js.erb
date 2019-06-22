@@ -55,7 +55,7 @@ while(cont >= 0)
     "<div class='left col-3 colunaBotoes' style='font-size: 18px; margin-top: -20px;'>" +
     "<a href=<%=edit_contum_path(@contas[cont])%> class='botao_tabela' >Editar</a>" +
     "</div><div class='left col-3 colunaBotoes' style='font-size: 18px; margin-top: -20px;'>" +
-    "<a class='botao_tabela' data-confirm='Tem certeza que deseja excluir essa conta?' rel='nofollow' data-method='delete' href=<%= contum_path(@contas[cont]) %>>Deletar</a>" +
+    "<a class='botao_tabela' data-remote='true' data-confirm='Tem certeza que deseja excluir essa conta?' rel='nofollow' data-method='delete' href=<%= contum_path(@contas[cont]) %>>Deletar</a>" +
     "</div></div>";
 
 <% cont -= 1
